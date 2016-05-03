@@ -1,0 +1,22 @@
+<!--- TEMPLATENAME: customVarTemplate.isml --->
+<html>
+	
+	<isdecorate template="pt_decorator">My Content Embedded</isdecorate>
+	Hello Template Included Locally :: <isinclude template="Hello" /><br />
+	Hello Template Included Remotely :: <isinclude url="${URLUtils.url('Call-Start','param','Bharat')}" /><br />
+	<body>
+		<isset name="sessionVar" value="${1}" scope = "session"/>
+		The value of session variable is :: ${session.custom.sessionVar} <br />
+		<isset name="requestVar" value="${1 + 1}" scope = "request"/>
+		The value of request variable is :: ${request.custom.requestVar} <br />
+		<isset name="pageVar" value="${1+3}" scope = "page"/>
+		The value of page variable is :: ${pageVar} <br />
+		<isloop items="${pdict.ExplicitRecommendations}" var="itemVar">
+			<isif condition="${itemVar %2 == 0}">
+				<div>${itemVar} : Even </div>
+			<iselse>
+				<div>${itemVar} : Odd </div>
+			</isif>
+		</isloop>
+	</body>
+</html>

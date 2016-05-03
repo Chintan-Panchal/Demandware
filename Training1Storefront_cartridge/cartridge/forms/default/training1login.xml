@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="training1_login_username" label="training1.login.username" type="string" mandatory="true" missing-error="training1.username.missing"  />
+	<field formid="training1_login_password" label="training1.login.password" type="string" mandatory="true" missing-error="training1.password.missing" />
+	<action formid="authenticateUser" valid-form="true" />
+</form>

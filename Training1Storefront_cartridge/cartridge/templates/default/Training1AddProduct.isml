@@ -1,0 +1,27 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isinclude template="util/modules"/>
+<form action="${URLUtils.httpsContinue()}" method="POST" id="${pdict.CurrentForms.training1addproduct.htmlName}" class="form-horizontal">
+	<div style="text-align:center">
+		<div>
+			<div>
+				<isinputfield formfield="${pdict.CurrentForms.training1addproduct.training1_product_name}" type="input"/>
+			</div>
+		</div>
+		<div>
+			<div>
+				<isinputfield formfield="${pdict.CurrentForms.training1addproduct.training1_product_price}" type="input"/>
+			</div>
+		</div>
+		<div>
+			<div>
+				<isinputfield formfield="${pdict.CurrentForms.training1addproduct.training1_product_quantity}" type="input"/>
+			</div>
+		</div>
+		<div>
+			<button id="${pdict.CurrentForms.training1addproduct.addProduct.htmlName}" type="submit" name="${pdict.CurrentForms.training1addproduct.addProduct.htmlName}" value="${Resource.msg('training1.addproduct.submit','forms',null)}">
+				${Resource.msg('training1.addProduct.submit','forms',null)}
+			</button>
+		</div>
+	</div>
+</form>
+

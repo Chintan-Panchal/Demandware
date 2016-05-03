@@ -1,0 +1,39 @@
+<!--- TEMPLATENAME: newsletter.isml --->
+<style>
+
+</style>
+<isprint value="${dw.system.Site.current.preferences.custom.temailHeader}" encoding="off"/>
+<iscomment>
+Original Header Values	
+<table width="600">
+	<tbody>
+	<tr height="5"><td>&nbsp;</td></tr>
+					<tr>
+						<td colspan="9" style="text-align:center">
+							<a href="${URLUtils.httpHome()}" title="${Resource.msg('global.storename','locale',null)}">
+								<img src="${URLUtils.httpStatic('images/email/mobile-logo.png')}" alt="${Resource.msg('global.storename','locale',null)}" style="text:align:center;display:block;margin:0 auto;"/>
+								
+							</a>
+						</td>
+					</tr>
+	<tr height="5"><td>&nbsp;</td></tr>
+					<tr>
+						<td><img src="${URLUtils.httpStatic('images/email/link_spacer01.png')}" /></td>
+						<td><a href="#" alt="SHOP ALL" style="display:block"><img src="${URLUtils.httpStatic('images/email/link-shopall.png')}" /></a></td>
+						<td><a href="#" alt="JEANS"><img src="${URLUtils.httpStatic('images/email/link_jeans.png')}" /></a></td>
+		                <td><a href="#" alt="UNDERWEAR"><img src="${URLUtils.httpStatic('images/email/link-underwear.png')}" /></a></td>
+		                <td><a href="#" alt="PERFORMANCE"><img src="${URLUtils.httpStatic('images/email/link-performacne.png')}" /></a></td>
+		                <td><a href="#" alt="ACCESSORIES"><img src="${URLUtils.httpStatic('images/email/link_accessories.png')}" /></a></td>
+		                <td><img src="${URLUtils.httpStatic('images/email/link_divider.png')}" /></td>
+		                <td><a href="#" alt="WORLD OF CK"><img src="${URLUtils.httpStatic('images/email/link-world-of-ck.png')}" /></a></td>
+		                <td><img src="${URLUtils.httpStatic('images/email/link_spacer02.png')}" /></td>
+				    </tr>
+	</tbody>
+</table>	
+</iscomment>
+
+<table width="600" cellspacing="0" cellpadding="0" style="font-family:'Futura', 'futura-pt', 'Arial Narrow', Arial, sans-serif;color:black ">
+<isprint value="${dw.system.Site.current.preferences.custom.newsletterEmailContent}" encoding="off"/>
+</table>
+
+<isprint value="${dw.system.Site.current.preferences.custom.temailFooter}" encoding="off"/>

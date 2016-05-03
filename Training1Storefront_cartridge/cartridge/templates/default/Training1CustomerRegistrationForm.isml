@@ -1,0 +1,12 @@
+<!--- TEMPLATENAME: Training1CustomerRegistrationForm.isml --->
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+
+<isinclude template="util/modules"/>
+
+<form action="${URLUtils.httpsContinue()}" method="POST" id="${pdict.CurrentForms.training1login.htmlName}">
+	<isinputfield formfield="${pdict.CurrentForms.Training1CustomerForm.training1customerfirstname}" type="input" />
+	<isinputfield formfield="${pdict.CurrentForms.Training1CustomerForm.training1customerlastname}" type="input" />
+	<isinputfield formfield="${pdict.CurrentForms.Training1CustomerForm.training1customeraddress}" type="input" />
+	<isinputfield formfield="${pdict.CurrentForms.Training1CustomerForm.training1customermobile}" type="input" />
+	<input type="submit" value="${Resource.msg('training1.customer.submit','forms', null)}" name="${pdict.CurrentForms.Training1CustomerForm.training1registersubmit.htmlName}" />
+</form>

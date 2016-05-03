@@ -1,0 +1,21 @@
+<iscontent type="text/html" charset="UTF-8" compact="true"/>
+<isinclude template="util/modules"/>
+<form action="${URLUtils.httpsContinue()}" method="POST" id="${pdict.CurrentForms.training1login.htmlName}" class="form-horizontal">
+	<div style="text-align:center">
+		<div>
+			<div>
+				<isinputfield formfield="${pdict.CurrentForms.training1login.training1_login_username}" type="input"/>
+			</div>
+		</div>
+		<div>
+			<div>
+				<isinputfield formfield="${pdict.CurrentForms.training1login.training1_login_password}" type="password"/>
+			</div>
+		</div>
+		<div>
+			<button id="${pdict.CurrentForms.training1login.authenticateUser.htmlName}" type="submit" name="${pdict.CurrentForms.training1login.authenticateUser.htmlName}" value="${Resource.msg('training1.login.submit','forms',null)}">
+				${Resource.msg('training1.login.submit','forms',null)}
+			</button>
+		</div>
+	</div>
+</form>

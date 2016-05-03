@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?demandware-pipeline version="2.0"?>
+
+<pipeline type="view">
+  <description>Training1Login</description>
+  <branch basename="Start">
+    <segment>
+      <node>
+        <start-node name="Start" secure="false"/>
+        <node-display x="2" y="0"/>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="1"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="ClearFormElement" pipelet-set-identifier="bc_api">
+          <key-binding alias="CurrentForms.training1login" key="FormElement"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="1"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <interaction-continue-node secure="false" start-name="submit" transaction-required="false">
+          <template buffered="true" dynamic="false" name="training1login"/>
+        </interaction-continue-node>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="authenticateUser">
+          <transition target-connector="in">
+            <transition-display>
+              <bend-point relative-to="target" x="0" y="-1"/>
+            </transition-display>
+          </transition>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="false"/>
+                <config-property key="OnError" value="PIPELET_ERROR"/>
+                <config-property key="ScriptFile" value="training1login.ds"/>
+                <key-binding alias="Log" key="ScriptLog"/>
+                <key-binding alias="CurrentHttpParameterMap.dwfrm_training1login_training1__login__username.stringValue" key="username"/>
+                <key-binding alias="CurrentHttpParameterMap.dwfrm_training1login_training1__login__password.stringValue" key="password"/>
+                <key-binding alias="userType" key="userType"/>
+              </pipelet-node>
+              <node-display x="0" y="2"/>
+              <branch basename="b2" source-connector="error">
+                <transition target-connector="in1" target-path="./+1">
+                  <transition-display>
+                    <bend-point relative-to="source" x="4" y="0"/>
+                  </transition-display>
+                </transition>
+              </branch>
+            </node>
+            <simple-transition>
+              <transition-display>
+                <bend-point relative-to="source" x="0" y="1"/>
+              </transition-display>
+            </simple-transition>
+            <node>
+              <decision-node condition-key="userType != &quot;Invalid&quot;" condition-operator="expr"/>
+              <node-display x="0" y="1"/>
+              <branch basename="b3" source-connector="yes">
+                <transition target-connector="in">
+                  <transition-display>
+                    <bend-point relative-to="source" x="0" y="1"/>
+                  </transition-display>
+                </transition>
+                <segment>
+                  <node>
+                    <decision-node condition-key="userType == &quot;ADMIN&quot;" condition-operator="expr"/>
+                    <node-display x="0" y="1"/>
+                    <branch basename="b2" source-connector="yes">
+                      <transition target-connector="in">
+                        <transition-display>
+                          <bend-point relative-to="source" x="0" y="1"/>
+                        </transition-display>
+                      </transition>
+                      <segment>
+                        <node>
+                          <pipelet-node pipelet-name="ClearFormElement" pipelet-set-identifier="bc_api">
+                            <key-binding alias="CurrentForms.training1addproduct" key="FormElement"/>
+                          </pipelet-node>
+                          <node-display x="0" y="1"/>
+                        </node>
+                        <transition target-connector="in1" target-path="./+1"/>
+                      </segment>
+                      <segment>
+                        <node>
+                          <join-node/>
+                          <node-display x="0" y="1"/>
+                        </node>
+                        <simple-transition>
+                          <transition-display>
+                            <bend-point relative-to="source" x="0" y="1"/>
+                          </transition-display>
+                        </simple-transition>
+                        <node>
+                          <interaction-continue-node secure="false" start-name="addProduct" transaction-required="false">
+                            <template buffered="true" dynamic="false" name="Training1AddProduct"/>
+                          </interaction-continue-node>
+                          <node-display x="0" y="1"/>
+                          <branch basename="b2" source-connector="addProduct">
+                            <transition target-connector="in">
+                              <transition-display>
+                                <bend-point relative-to="target" x="0" y="-1"/>
+                              </transition-display>
+                            </transition>
+                            <segment>
+                              <node>
+                                <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+                                  <config-property key="Transactional" value="true"/>
+                                  <config-property key="OnError" value="PIPELET_ERROR"/>
+                                  <config-property key="ScriptFile" value="Training1AddProduct.ds"/>
+                                  <key-binding alias="Log" key="ScriptLog"/>
+                                  <key-binding alias="CurrentHttpParameterMap.dwfrm_training1addproduct_training1__product__name.stringValue" key="productName"/>
+                                  <key-binding alias="CurrentHttpParameterMap.dwfrm_training1addproduct_training1__product__price.stringValue" key="productPrice"/>
+                                  <key-binding alias="CurrentHttpParameterMap.dwfrm_training1addproduct_training1__product__quantity.stringValue" key="productQuantity"/>
+                                  <key-binding alias="addProduct" key="addProduct"/>
+                                </pipelet-node>
+                                <node-display x="0" y="2"/>
+                              </node>
+                              <simple-transition>
+                                <transition-display>
+                                  <bend-point relative-to="source" x="0" y="1"/>
+                                </transition-display>
+                              </simple-transition>
+                              <node>
+                                <interaction-node transaction-required="false">
+                                  <template buffered="true" dynamic="false" name="Training1AddproductSuccess"/>
+                                </interaction-node>
+                                <node-display x="0" y="1"/>
+                              </node>
+                            </segment>
+                          </branch>
+                        </node>
+                        <transition target-connector="in1" target-path="./+1"/>
+                      </segment>
+                      <segment>
+                        <node>
+                          <join-node/>
+                          <node-display x="-1" y="-1"/>
+                        </node>
+                        <transition target-connector="in1" target-path="./-1"/>
+                      </segment>
+                    </branch>
+                  </node>
+                  <simple-transition>
+                    <transition-display>
+                      <bend-point relative-to="source" x="4" y="0"/>
+                      <bend-point relative-to="target" x="0" y="-1"/>
+                    </transition-display>
+                  </simple-transition>
+                  <node>
+                    <interaction-node transaction-required="false">
+                      <template buffered="true" dynamic="false" name="Training1ShowProducts"/>
+                    </interaction-node>
+                    <node-display x="2" y="5"/>
+                  </node>
+                </segment>
+              </branch>
+            </node>
+            <transition target-connector="in1" target-path="./+1">
+              <transition-display>
+                <bend-point relative-to="source" x="4" y="0"/>
+              </transition-display>
+            </transition>
+          </segment>
+          <segment>
+            <node>
+              <join-node/>
+              <node-display x="2" y="-3"/>
+            </node>
+            <transition target-connector="in1" target-path="../-1"/>
+          </segment>
+        </branch>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="1" y="-1"/>
+      </node>
+      <transition target-connector="in1" target-path="./-1"/>
+    </segment>
+  </branch>
+  <branch basename="_ANONYMOUS_BRANCH_2">
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="2" y="15"/>
+      </node>
+    </segment>
+  </branch>
+</pipeline>

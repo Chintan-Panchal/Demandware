@@ -1,0 +1,31 @@
+<!--- TEMPLATENAME: Training1ShowProducts.isml --->
+<html>
+	<head>
+	</head>
+	<body>
+		<isscript>
+			importPackage( dw.system );
+			importPackage( dw.object );
+			importPackage( dw.util );
+			
+			var prodIterator : SeekableIterator = CustomObjectMgr.getAllCustomObjects("Training1Product");
+			var prodMap = new HashMap();
+			while(prodIterator.hasNext())
+			{
+			  	 var prodCO : CustomObject = prodIterator.next();
+			  	 var prodList : ArrayList = new ArrayList();
+			  	 prodList.add(prodCO.custom.Name);
+			  	 prodList.add(prodCO.custom.Price);
+			  	 prodList.add(prodCO.custom.Quantity);
+			  	 prodMap.put(prodCO.custom.ID, prodList);
+			}
+		 </isscript>
+		 <isloop items="${prodMap.keySet()}" var="productMap">
+				<div>Name::&nbsp;${prodMap.get(productMap).get(0)}</div>
+				<div>Price::&nbsp;${prodMap.get(productMap).get(1)}</div>
+				<div>Stock availability::&nbsp;${prodMap.get(productMap).get(2)}</div>
+				<hr />
+				<br />
+		 </isloop>
+	</body>
+</html>

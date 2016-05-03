@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="training1_product_name" label="training1.product.name" type="string" mandatory="true" missing-error="training1.product.name.missing" />
+	<field formid="training1_product_price" label="training1.product.price" type="string" mandatory="true" missing-error="training1.product.price.missing"  />
+	<field formid="training1_product_quantity" label="training1.product.quantity" type="string" mandatory="true" missing-error="training1.product.quantity.missing" />
+	<action formid="addProduct" valid-form="true" />
+</form>

@@ -1,0 +1,7 @@
+<!--- TEMPLATENAME: CallNotEmpty.isml --->
+<!--- TEMPLATENAME: CallEmpty.isml ---><!--  -->
+<html>
+	<body>
+		Param value is : ${pdict.CurrentHttpParameterMap.param.value}
+	</body>
+</html>

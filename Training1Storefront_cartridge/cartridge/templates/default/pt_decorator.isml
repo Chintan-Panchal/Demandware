@@ -1,0 +1,4 @@
+<!--- TEMPLATENAME: pt_decorator.isml --->
+<div id="dvHead">
+	<isreplace />
+</div>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?demandware-pipeline version="2.0"?>
+
+<pipeline type="view">
+  <description>ScriptEx</description>
+  <branch basename="Start">
+    <segment>
+      <node>
+        <start-node name="Start" secure="false"/>
+        <node-display x="1" y="1"/>
+      </node>
+      <simple-transition>
+        <transition-display>
+          <bend-point relative-to="source" x="0" y="1"/>
+        </transition-display>
+      </simple-transition>
+      <node>
+        <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+          <config-property key="Transactional" value="false"/>
+          <config-property key="OnError" value="PIPELET_ERROR"/>
+          <config-property key="ScriptFile" value="GetProductDetail.ds"/>
+          <key-binding alias="null" key="ScriptLog"/>
+          <key-binding alias="CurrentHttpParameterMap.pid.stringValue" key="ProductID"/>
+          <key-binding alias="mapVal" key="mapVal"/>
+          <key-binding alias="listVal" key="listVal"/>
+          <key-binding alias="productDetail" key="productDetail"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <simple-transition>
+        <transition-display>
+          <bend-point relative-to="source" x="0" y="1"/>
+          <bend-point relative-to="target" x="0" y="-1"/>
+        </transition-display>
+      </simple-transition>
+      <node>
+        <interaction-node transaction-required="false">
+          <template buffered="true" dynamic="false" name="productDetails"/>
+        </interaction-node>
+        <node-display x="-1" y="1"/>
+      </node>
+    </segment>
+  </branch>
+</pipeline>

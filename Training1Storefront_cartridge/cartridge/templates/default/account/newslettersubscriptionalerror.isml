@@ -1,0 +1,7 @@
+<isscript>
+var status = {			
+	success:false		
+}
+var json = JSON.stringify(status);	
+</isscript>
+<isprint value="${json}" encoding="off"/>

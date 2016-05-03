@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?demandware-pipeline version="2.0"?>
+
+<pipeline type="view">
+  <branch basename="Start">
+    <segment>
+      <node>
+        <start-node name="Start" secure="false"/>
+        <node-display x="1" y="0"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <call-node start-name-ref="Call-CheckValue"/>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="Empty">
+          <transition target-connector="in">
+            <transition-display>
+              <bend-point relative-to="target" x="0" y="-1"/>
+            </transition-display>
+          </transition>
+          <segment>
+            <node>
+              <interaction-node transaction-required="false">
+                <template buffered="true" dynamic="false" name="CallEmpty"/>
+              </interaction-node>
+              <node-display x="1" y="2"/>
+            </node>
+          </segment>
+        </branch>
+        <branch basename="b3" source-connector="noEmpty">
+          <transition target-connector="in">
+            <transition-display>
+              <bend-point relative-to="target" x="0" y="-1"/>
+            </transition-display>
+          </transition>
+          <segment>
+            <node>
+              <interaction-node transaction-required="false">
+                <template buffered="true" dynamic="false" name="CallNotEmpty"/>
+              </interaction-node>
+              <node-display x="0" y="2"/>
+            </node>
+          </segment>
+        </branch>
+      </node>
+    </segment>
+  </branch>
+</pipeline>

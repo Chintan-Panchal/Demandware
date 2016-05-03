@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?demandware-pipeline version="2.0"?>
+
+<pipeline type="view">
+  <branch basename="Start">
+    <segment>
+      <node>
+        <start-node name="Start" secure="false"/>
+        <node-display x="2" y="0"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <pipelet-node pipelet-name="ClearFormElement" pipelet-set-identifier="bc_api">
+          <key-binding alias="CurrentForms.Training1CustomerForm" key="FormElement"/>
+        </pipelet-node>
+        <node-display x="0" y="1"/>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="0" y="1"/>
+      </node>
+      <simple-transition/>
+      <node>
+        <interaction-continue-node secure="false" start-name="submit" transaction-required="false">
+          <template buffered="true" dynamic="false" name="Training1CustomerRegistrationForm"/>
+        </interaction-continue-node>
+        <node-display x="0" y="1"/>
+        <branch basename="b2" source-connector="training1registersubmit">
+          <transition target-connector="in">
+            <transition-display>
+              <bend-point relative-to="target" x="0" y="-1"/>
+            </transition-display>
+          </transition>
+          <segment>
+            <node>
+              <pipelet-node pipelet-name="Script" pipelet-set-identifier="bc_api">
+                <config-property key="Transactional" value="true"/>
+                <config-property key="OnError" value="PIPELET_ERROR"/>
+                <config-property key="ScriptFile" value="Training1CustomerRegistrationCustomScript.ds"/>
+                <key-binding alias="Log" key="ScriptLog"/>
+                <key-binding alias="CurrentHttpParameterMap.dwfrm_Training1CustomerForm_training1customerfirstname.stringValue" key="firstName"/>
+                <key-binding alias="CurrentHttpParameterMap.dwfrm_Training1CustomerForm_training1customerlastname.stringValue" key="lastName"/>
+                <key-binding alias="CurrentHttpParameterMap.dwfrm_Training1CustomerForm_training1customeraddress.stringValue" key="address"/>
+                <key-binding alias="CurrentHttpParameterMap.dwfrm_Training1CustomerForm_training1customermobile.stringValue" key="mobile"/>
+                <key-binding alias="register" key="register"/>
+              </pipelet-node>
+              <node-display x="0" y="2"/>
+            </node>
+            <simple-transition>
+              <transition-display>
+                <bend-point relative-to="source" x="0" y="1"/>
+              </transition-display>
+            </simple-transition>
+            <node>
+              <interaction-node transaction-required="false">
+                <template buffered="true" dynamic="false" name="CustomerRegistrationSuccess"/>
+              </interaction-node>
+              <node-display x="0" y="1"/>
+            </node>
+          </segment>
+        </branch>
+      </node>
+      <transition target-connector="in1" target-path="./+1"/>
+    </segment>
+    <segment>
+      <node>
+        <join-node/>
+        <node-display x="2" y="-1"/>
+      </node>
+      <transition target-connector="in1" target-path="./-1"/>
+    </segment>
+  </branch>
+</pipeline>

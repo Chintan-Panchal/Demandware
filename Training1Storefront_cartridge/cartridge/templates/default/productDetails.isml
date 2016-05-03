@@ -1,0 +1,14 @@
+<!--- TEMPLATENAME: productDetails.isml --->
+${pdict.productDetail.name}
+
+<br />
+
+<isloop items="${pdict.mapVal.keySet()}" var="itemVar">
+		Value :: ${pdict.mapVal.get(itemVar)}	
+</isloop>
+
+<br />
+
+<isloop items="${pdict.listVal}" var="itemVar">
+		Value :: ${itemVar}	
+</isloop>

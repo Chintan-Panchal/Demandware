@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.demandware.com/xml/form/2008-04-19">
+	<field formid="training1customerfirstname" label="training1.customer.firstname" type="string" mandatory="true"  />
+	<field formid="training1customerlastname" label="training1.customer.lastname" type="string" mandatory="true" />
+	<field formid="training1customeraddress" label="training1.customer.address" type="string" mandatory="true" />
+	<field formid="training1customermobile" label="training1.customer.mobile" type="string" mandatory="true" />
+	<field formid="training1customeremail" label="training1.customer.email" type="string" mandatory="true" />
+	<action formid="training1registersubmit" valid-form="true"/>
+</form>

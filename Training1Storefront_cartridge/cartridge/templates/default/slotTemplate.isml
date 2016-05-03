@@ -1,0 +1,2 @@
+<!--- TEMPLATENAME: slotTemplate.isml --->
+<isslot id="slot-banner" description="recommendations banner for search no results page" context="global" />
